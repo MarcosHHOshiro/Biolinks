@@ -1,13 +1,29 @@
 <div>
-    <h1>Login</h1>    
+    <h1>Login</h1>
+
+    @if ($message = session()->get('message'))
+        <div>
+            {{ session('message') }}
+        </div>
+    @endif
 
     <div>
         <form action="/login" method="POST">
             @csrf
 
-            <input type="text" name="email" placeholder="Email" value="{{ old('email') }}" required>
+            <div>
+                <input type="text" name="email" placeholder="Email" value="{{ old('email') }}">
+                @error('email')
+                    <span>{{ $message }}</span>
+                @enderror
+            </div>
 
-            <input type="password" name="password" placeholder="Password" required>
+            <div>
+                <input type="password" name="password" placeholder="Password">
+                @error('password')
+                    <span>{{ $message }}</span>
+                @enderror
+            </div>
 
             <button type="submit">Login</button>
         </form>
