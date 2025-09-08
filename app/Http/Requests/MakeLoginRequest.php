@@ -6,14 +6,15 @@ use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * Handle Login Request
+ *
+ * @property-read string $email
+ * @property-read string $password
+ */
 class MakeLoginRequest extends FormRequest
 {
-    /**
-     * Handle Login Request
-     *
-     * @property-read string $email
-     * @property-read string $password
-     */
+
     public function authorize(): bool
     {
         return true;
