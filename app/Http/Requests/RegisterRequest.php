@@ -46,6 +46,7 @@ class RegisterRequest extends FormRequest
 
         $user->save();
 
+        //após cadastro, já logo o usuario
         auth()->login($user);
 
         return true;
