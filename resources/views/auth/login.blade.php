@@ -1,4 +1,6 @@
 <div>
+    {{ auth()->id() }}
+
     <h1>Login</h1>
 
     @if ($message = session()->get('message'))

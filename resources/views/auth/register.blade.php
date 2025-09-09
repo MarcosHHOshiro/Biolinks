@@ -1,4 +1,7 @@
 <div>
+
+    {{ auth()->id() }}
+
     <h1>Register</h1>
 
     @if ($message = session()->get('message'))
