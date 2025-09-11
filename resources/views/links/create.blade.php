@@ -8,19 +8,19 @@
     @endif
 
     <div>
-        <form action="{{ route('links.store') }}" method="POST">
+        <form action="{{ route('links.create') }}" method="Post">
             @csrf
 
             <div>
-                <input type="text" name="link" placeholder="Link" value="{{ old('link') }}">
+                <input type="text" name="link" placeholder="Link">
                 @error('link')
                     <span>{{ $message }}</span>
                 @enderror
             </div>
 
             <div>
-                <input type="text" name="nome" placeholder="Nome" value="{{ old('nome') }}">
-                @error('nome')
+                <input type="text" name="name" placeholder="Nome">
+                @error('name')
                     <span>{{ $message }}</span>
                 @enderror
             </div>
