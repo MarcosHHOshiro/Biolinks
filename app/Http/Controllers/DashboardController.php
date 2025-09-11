@@ -13,12 +13,9 @@ class DashboardController extends Controller
          * @var \App\Models\User $user
          */
         $user = auth()->user();
-        dump(
-            $user->links()
-                ->where('name', '=', 'YouTube')
-                ->get()
-        );
 
-        return view('dashboard');
+        return view('dashboard', [
+            'links' => $user->links
+        ]);
     }
 }
