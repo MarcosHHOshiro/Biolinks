@@ -25,6 +25,7 @@ class LinkController extends Controller
         $link = new Link();
         $link->link = $request->link;
         $link->name = $request->name;
+        $link->user_id = auth()->id();
 
         $link->save();
 
