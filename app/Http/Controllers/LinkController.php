@@ -35,11 +35,10 @@ class LinkController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Link $link)
     {
-        $link = Link::query()->findOrFail($id);
 
-        dd($link->toArray());
+        return view('links.edit', compact('link'));
     }
 
     /**
@@ -47,7 +46,12 @@ class LinkController extends Controller
      */
     public function update(Request $request, Link $link)
     {
-        //
+        $link->link = $request->link;
+        $link->name = $request->name;
+        $link->save();
+
+        return to_route('dashboard')
+        ->with(['message', 'Alterado com sucesso']);
     }
 
     /**
