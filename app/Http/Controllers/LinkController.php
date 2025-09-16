@@ -63,4 +63,8 @@ class LinkController extends Controller
         return to_route('dashboard')
             ->with('message', 'Deletado com sucesso');
     }
+
+    public function up(Link $link) {}
+
+    public function up(Link $link) {}
 }
