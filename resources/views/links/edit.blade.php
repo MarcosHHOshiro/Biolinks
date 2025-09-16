@@ -3,7 +3,7 @@
 
     @if ($message = session()->get('message'))
         <div>
-            {{ session('message') }}
+            {{ $message }}
         </div>
     @endif
 

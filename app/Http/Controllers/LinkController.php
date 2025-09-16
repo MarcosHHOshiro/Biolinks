@@ -51,7 +51,7 @@ class LinkController extends Controller
         $link->save();
 
         return to_route('dashboard')
-        ->with(['message', 'Alterado com sucesso']);
+        ->with('message', 'Alterado com sucesso');
     }
 
     /**
