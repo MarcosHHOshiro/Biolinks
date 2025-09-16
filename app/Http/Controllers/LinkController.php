@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLinkRequest;
 use App\Models\Link;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class LinkController extends Controller
@@ -22,7 +21,7 @@ class LinkController extends Controller
      */
     public function store(StoreLinkRequest $request)
     {
-        $link = new Link();
+        $link = new Link;
         $link->link = $request->link;
         $link->name = $request->name;
         $link->user_id = auth()->id();
@@ -51,7 +50,7 @@ class LinkController extends Controller
         $link->save();
 
         return to_route('dashboard')
-        ->with('message', 'Alterado com sucesso');
+            ->with('message', 'Alterado com sucesso');
     }
 
     /**
@@ -59,6 +58,9 @@ class LinkController extends Controller
      */
     public function destroy(Link $link)
     {
-        //
+        $link->delete();
+
+        return to_route('dashboard')
+            ->with('message', 'Deletado com sucesso');
     }
 }
