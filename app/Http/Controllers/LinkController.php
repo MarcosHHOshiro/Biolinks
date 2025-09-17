@@ -64,7 +64,35 @@ class LinkController extends Controller
             ->with('message', 'Deletado com sucesso');
     }
 
-    public function up(Link $link) {}
+    public function up(Link $link)
+    {
+        $order = $link->sort;
+        $newOrder = $order - 1;
 
-    public function up(Link $link) {}
+        $user = auth()->user();
+
+        $swapWith = $user->links()->where('sort', '=', $newOrder)->first();
+
+        $link->fill(['sort' => $newOrder])->save();
+        $swapWith->fill(['sort' => $order])->save();
+
+        return back();
+    }
+
+    public function down(Link $link)
+    {
+        $order = $link->sort;
+        $newOrder = $order + 1;
+
+        $user = auth()->user();
+
+        $swapWith = $user->links()->where('sort', '=', $newOrder)->first();
+
+        $link->fill(['sort' => $newOrder])->save();
+        $swapWith->fill(['sort' => $order])->save();
+
+        return back();
+
+    }
+
 }
