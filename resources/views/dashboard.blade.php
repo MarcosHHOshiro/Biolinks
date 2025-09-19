@@ -1,6 +1,7 @@
 <div>
 
     <h1>Dashboard</h1>
+    <a href="{{ route('profile') }}">Atualizar profile</a>
 
     @if ($message = session()->get('message'))
         <div>
