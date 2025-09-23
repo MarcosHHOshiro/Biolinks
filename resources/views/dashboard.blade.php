@@ -1,46 +1,50 @@
-<div>
+<x-layout.app>
 
-    <h1>Dashboard</h1>
-    <a href="{{ route('profile') }}">Atualizar profile</a>
+    <div>
 
-    @if ($message = session()->get('message'))
-        <div>
-            {{ $message }}
-        </div>
-    @endif
+        <h1>Dashboard</h1>
+        <a href="{{ route('profile') }}">Atualizar profile</a>
 
-    <a href="{{ route('links.create') }}">Criar</a>
+        @if ($message = session()->get('message'))
+            <div>
+                {{ $message }}
+            </div>
+        @endif
 
-    <ul>
-        @foreach ($links as $link)
-            <li style="display: flex;">
+        <a href="{{ route('links.create') }}">Criar</a>
 
-                @unless($loop->last)
-                    <form action="{{ route('links.down', $link) }}" method="post">
+        <ul>
+            @foreach ($links as $link)
+                <li style="display: flex;">
+
+                    @unless($loop->last)
+                        <form action="{{ route('links.down', $link) }}" method="post">
+                            @csrf
+                            @method('PATCH')
+
+                            <button>⬇️</button>
+                        </form>
+                    @endunless
+
+                    @unless($loop->first)
+                        <form action="{{ route('links.up', $link) }}" method="post">
+                            @csrf
+                            @method('PATCH')
+
+                            <button>⬆️</button>
+                        </form>
+                    @endunless
+
+                    <a href="{{ route('links.edit', $link) }}">{{ $link->name }}</a>
+                    <form action="{{ route('links.destroy', $link) }}" method="post"
+                        onsubmit="return confirm('Tem certeza?')">
                         @csrf
-                        @method('PATCH')
+                        @method('DELETE')
 
-                        <button>⬇️</button>
+                        <button>Deletar</button>
                     </form>
-                @endunless
-
-                @unless($loop->first)
-                    <form action="{{ route('links.up', $link) }}" method="post">
-                        @csrf
-                        @method('PATCH')
-
-                        <button>⬆️</button>
-                    </form>
-                @endunless
-
-                <a href="{{ route('links.edit', $link) }}">{{ $link->name }}</a>
-                <form action="{{ route('links.destroy', $link) }}" method="post" onsubmit="return confirm('Tem certeza?')">
-                    @csrf
-                    @method('DELETE')
-
-                    <button>Deletar</button>
-                </form>
-            </li>
-        @endforeach
-    </ul>
-</div>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+</x-layout.app>

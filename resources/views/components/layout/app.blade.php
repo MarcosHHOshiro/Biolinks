@@ -9,7 +9,7 @@
     <title> {{ config('app.name') }} </title>
 </head>
 
-<body class="bg-slate-900 text-slate-50">
+<body class="bg-slate-900 text-slate-50 min-h-screen">
     {{ $slot }}
 </body>
 
