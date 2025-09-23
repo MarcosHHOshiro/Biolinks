@@ -21,6 +21,6 @@ class LoginController extends Controller
             return to_route('dashboard');
         }
 
-        return back()->with(['message' => 'Não encontrado']);
+        return back()->with(['message' => 'Credenciais inválidas.']);
     }
 }

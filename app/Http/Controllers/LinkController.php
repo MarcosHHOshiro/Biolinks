@@ -28,7 +28,7 @@ class LinkController extends Controller
         $link->user_id = auth()->id();
 
         $link->save();
-
+        
         return to_route('dashboard');
     }
 

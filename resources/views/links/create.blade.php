@@ -1,32 +1,15 @@
 <x-layout.app>
-    <div>
-        <h1>Criar um link</h1>
+    <x-container>
+        <x-card title="Create a new link">
+            <x-form :route="route('links.create')" post id="form">
+                <x-input name="link" placeholder="Link" type="text" value="{{ old('link') }}" />
+                <x-input name="name" placeholder="Name" type="text" value="{{ old('name') }}" />
+            </x-form>
 
-        @if ($message = session()->get('message'))
-            <div>
-                {{ session('message') }}
-            </div>
-        @endif
-
-        <form action="{{ route('links.create') }}" method="Post">
-            @csrf
-
-            <div>
-                <input type="text" name="link" placeholder="Link">
-                @error('link')
-                    <span>{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div>
-                <input type="text" name="name" placeholder="Nome">
-                @error('name')
-                    <span>{{ $message }}</span>
-                @enderror
-            </div>
-
-            <a href="{{ route('dashboard') }}">Cancelar</a>
-            <button>Salvar</button>
-        </form>
-    </div>
+            <x-slot:actions>
+                <x-a :href="route('dashboard')">Cancelar</x-a>
+                <x-button type="submit" form="form">Create a new link</x-button>
+            </x-slot:actions>
+        </x-card>
+    </x-container>
 </x-layout.app>
